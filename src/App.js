@@ -16,8 +16,16 @@ class App extends React.Component {
 
   handleMatch = () => {
     const { firstPick, secondPick } = this.state;
-    setTimeout(this.randomPick(), 4000);
-    setTimeout(this.randomPick(false), 7000);
+    setTimeout((this.handleFirstPick), 2000);
+    setTimeout((this.handleSecondPick), 4000);
+  }
+
+  handleFirstPick = () => {
+    this.setState({ firstPick: People[Math.floor((Math.random() * People.length) + 1)]})
+  }
+
+  handleSecondPick = () => {
+    this.setState({ secondPick: People[Math.floor((Math.random() * People.length) + 1)]})
   }
 
   clearMatch = () => {
