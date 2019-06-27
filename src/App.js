@@ -15,30 +15,30 @@ class App extends React.Component {
   }
 
   handleMatch = () => {
+    this.setState({ matching: true });
     const { firstPick, secondPick } = this.state;
     setTimeout((this.handleFirstPick), 2000);
     setTimeout((this.handleSecondPick), 4000);
   }
 
+  randomPerson = () => {
+    return People[Math.floor((Math.random() * People.length) + 1)]
+  }
+
   handleFirstPick = () => {
-    this.setState({ firstPick: People[Math.floor((Math.random() * People.length) + 1)]})
+    this.setState({ firstPick: this.randomPerson()})
   }
 
   handleSecondPick = () => {
-    this.setState({ secondPick: People[Math.floor((Math.random() * People.length) + 1)]})
+    this.setState({ secondPick: this.randomPerson(), matching: false })
   }
 
   clearMatch = () => {
     this.setState({ firstPick: false, secondPick: false })
   }
 
-  randomPick = (first = true) => {
-    const randomIndex = Math.floor((Math.random() * People.length) + 1);
-    first ? this.setState({ firstPick: People[randomIndex] }) : this.setState({ secondPick: People[randomIndex] })
-  }
-
   render() {
-    const { firstPick, secondPick } = this.state;
+    const { firstPick, secondPick, matching } = this.state;
     return (
       <div className="App">
         <Picker
@@ -46,6 +46,8 @@ class App extends React.Component {
           secondPick={secondPick}
           handleMatch={this.handleMatch}
           clearMatch={this.clearMatch}
+          hasBothPicks={firstPick && secondPick}
+          matching={matching}
         />
       </div>
     );
