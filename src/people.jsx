@@ -1,6 +1,6 @@
 import React from 'react';
 
-const People = ["Beth", "Emma", "Jack E", "JCA", "Pat", "Sofie F", "Sosi",
+const People = [{name: "Beth", color: "#3cd070"}, "Emma", "Jack E", "JCA", "Pat", "Sofie F", "Sosi",
                "Tommy", "Dan", "Fliss", "Leah", "Matty", "Russell",
                "Vee", "Boris", "Brad", "Electra", "Helen", "Jamie I",
                "Murray", "Phil", "Sandy", "Slimes", "Alex", "Ben", "Ed",

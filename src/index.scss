@@ -1,5 +1,15 @@
+html,body{
+  height:100%
+}
+
 body {
   padding: 30px;
+}
+.header {
+  position: relative;
+  top: -38px;
+  left: -38px;
+  width: 100vw;
 }
 // background
 
@@ -33,7 +43,7 @@ body {
 
 // button
 .picker__actionButton {
-  max-width: 100px;
+  width: 150px;
   padding: 10px 5px;
   background-color: white;
   margin: 15px auto;
@@ -42,4 +52,46 @@ body {
   &:hover {
     cursor: pointer;
   }
+}
+
+//hearts
+.heart {
+  background-color: red;
+  height: 30px;
+  width: 30px;
+  transform: rotate(-45deg);
+  position: relative;
+  top: -75px;
+  transition: top ease #{(random(7)/2)+ 3}s;
+  &.move {
+    top: 100vh;
+  }
+  &.one {
+    left: percentage(random(100) / 100);
+  }
+  &.two {
+    left: percentage(random(100) / 100);
+  }
+  &.three {
+    left: percentage(random(100) / 100);
+  }
+  &.four {
+    left: percentage(random(100) / 100);
+  }
+  &.five {
+    left: percentage(random(100) / 100);
+  }
+}
+.heart:before,
+.heart:after {
+  content: "";
+  background-color: red;
+  border-radius: 50%;
+  height: 30px;
+  position: absolute;
+  width: 30px;
+}
+.heart:before {
+  top: -15px;
+  left: 0;
 }

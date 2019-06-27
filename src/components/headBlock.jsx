@@ -2,11 +2,9 @@ import React from 'react';
 import Spinner from './spinner';
 import QuestionMark from '../images/question_mark.svg';
 
-const colours = ["#3cd070", "#e0115f", "#ff9933", "#ccccff", "#002444", "#eac8d8", "#afbfba", "#ff0000", "#7fff00"];
-
-const HeadBlock = ({ person, matching }) =>
+const HeadBlock = ({ person, matching, colour }) =>
   <div className="headBlock">
-    <div className="headBlock__inner" style={{backgroundColor: colours[Math.floor((Math.random() * colours.length))]}}>
+    <div className="headBlock__inner" style={{backgroundColor: colour}}>
       { person ?
         <div>{person}</div>
         : matching ? <Spinner />
@@ -18,4 +16,4 @@ const HeadBlock = ({ person, matching }) =>
     }
   </div>
 
-export default HeadBlock
+export default HeadBlock;
