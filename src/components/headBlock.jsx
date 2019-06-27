@@ -6,7 +6,7 @@ const HeadBlock = ({ person, matching, colour }) =>
   <div className="headBlock">
     <div className="headBlock__inner" style={{backgroundColor: colour}}>
       { person ?
-        <div>{person}</div>
+        <img className="headBlock__image" src={require(`../images/faces/${person.replace(' ', '_')}.png`)} />
         : matching ? <Spinner />
         : <img className="headBlock__questionMark" src={QuestionMark} />
       }

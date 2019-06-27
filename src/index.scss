@@ -10,8 +10,17 @@ body {
   top: -38px;
   left: -38px;
   width: 100vw;
+  z-index: 3;
 }
-// background
+.header__image {
+  height: 100px;
+}
+// header
+.header__wrapper {
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+}
 
 // headBlocks
 .headBlock {
@@ -33,6 +42,10 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+}
+.headBlock__image {
+  height: 100px;
+  margin: 0 auto;
 }
 
 //picker

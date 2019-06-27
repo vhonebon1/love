@@ -4,7 +4,7 @@ import './App.css';
 import Picker from './components/picker';
 import People from './people';
 import Colours from './colours';
-import Header from './images/header.png';
+import Header from './components/header';
 
 class App extends React.Component {
 
@@ -24,25 +24,13 @@ class App extends React.Component {
   }
 
   moveHearts = () => {
-    const that = this;
-    this.allHearts().forEach(function (heart) {
-      setTimeout(() => that.addMoveClass(heart), Math.random() * (2000 - 0) + 0);
+    this.allHearts().forEach((heart) => {
+      setTimeout(() => this.addMoveClass(heart), Math.random() * (2000 - 0) + 0);
     });
-  }
-
-  resetHearts = () => {
-    const that = this;
-    this.allHearts().forEach(function(heart) {
-      that.addResetClass(heart);
-    })
   }
 
   addMoveClass = (element) => {
     element.classList.add('move');
-  }
-
-  addResetClass = (element) => {
-    element.classList.add('heart-reset');
   }
 
   handleMatch = () => {
@@ -73,16 +61,11 @@ class App extends React.Component {
     this.moveHearts()
   }
 
-  clearMatch = () => {
-    this.setState({ firstPick: false, secondPick: false });
-    this.updateColours();
-    this.resetHearts();
-  }
-
   render() {
     const { firstPick, secondPick, matching, firstColour, secondColour } = this.state;
     return (
       <div className="App">
+        <Header />
         <div className="heart"></div>
         <div className="heart one"></div>
         <div className="heart two"></div>
@@ -96,6 +79,7 @@ class App extends React.Component {
           secondColour={secondColour}
           handleMatch={this.handleMatch}
           clearMatch={this.clearMatch}
+          hasBothPicks={firstPick && secondPick}
           matching={matching}
         />
       </div>
