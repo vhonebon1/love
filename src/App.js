@@ -1,10 +1,11 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Picker from './components/picker';
 import People from './people';
 import Colours from './colours';
 import Header from './components/header';
+import Hearts from './components/hearts';
+import TeamPicker from './components/teamPicker';
 
 class App extends React.Component {
 
@@ -13,18 +14,20 @@ class App extends React.Component {
     this.state = {
       firstPick: false,
       secondPick: false,
-      firstColour: this.randomPick(Colours),
-      secondColour: this.randomPick(Colours)
     }
-    this.updateColours();
   }
 
-  allHearts = () => {
-    return document.querySelectorAll('.heart');
+  componentWillMount() {
+    this.updateColours()
+  }
+
+  setTeams = (teams) => {
+    this.setState({ teams })
   }
 
   moveHearts = () => {
-    this.allHearts().forEach((heart) => {
+    const allHearts = document.querySelectorAll('.heart');
+    allHearts.forEach((heart) => {
       setTimeout(() => this.addMoveClass(heart), Math.random() * (2000 - 0) + 0);
     });
   }
@@ -41,7 +44,7 @@ class App extends React.Component {
 
   updateColours = () => {
     const first = this.randomPick(Colours);
-    const filteredColours = Colours.filter(colour => colour != first);
+    const filteredColours = Colours.filter(colour => colour !== first);
     const second = this.randomPick(filteredColours);
     this.setState({ firstColour: first,
                     secondColour: second })
@@ -56,32 +59,48 @@ class App extends React.Component {
   }
 
   handleSecondPersonPick = () => {
-    const filteredPeople = People.filter(person => person != this.state.firstPick)
+    const filteredPeople = People.filter(person => person !== this.state.firstPick)
     this.setState({ secondPick: this.randomPick(filteredPeople), matching: false })
     this.moveHearts()
   }
 
+  renderTeam = () => {
+    return(
+      
+    )
+  }
+
+  renderTeams = () => {
+    return(
+      this.state.teams.map((team) => {
+        return (
+          this.renderTeam();
+        )
+      })
+    )
+  }
+
   render() {
-    const { firstPick, secondPick, matching, firstColour, secondColour } = this.state;
+    const { firstPick, secondPick, matching, firstColour, secondColour, teams } = this.state;
     return (
       <div className="App">
-        <Header />
-        <div className="heart"></div>
-        <div className="heart one"></div>
-        <div className="heart two"></div>
-        <div className="heart three"></div>
-        <div className="heart four"></div>
-        <div className="heart five"></div>
-        <Picker
-          firstPick={firstPick}
-          secondPick={secondPick}
-          firstColour={firstColour}
-          secondColour={secondColour}
-          handleMatch={this.handleMatch}
-          clearMatch={this.clearMatch}
-          hasBothPicks={firstPick && secondPick}
-          matching={matching}
-        />
+        { teams ?
+          this.renderTeams()
+          :
+          <React.Fragment>
+            <Hearts />
+            <Picker
+              firstPick={firstPick}
+              secondPick={secondPick}
+              matching={matching}
+              firstColour={firstColour}
+              secondColour={secondColour}
+              handleMatch={this.handleMatch}
+              clearMatch={this.clearMatch}
+            />
+            <div onClick={() => this.setState({ teams: new TeamPicker().pick()})}>Pick teams</div>
+          </React.Fragment>
+        }
       </div>
     );
   }
