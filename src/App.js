@@ -1,11 +1,10 @@
 import React from 'react';
 import './App.css';
-import Picker from './components/picker';
 import People from './people';
 import Colours from './colours';
 import Header from './components/header';
-import Hearts from './components/hearts';
-import TeamPicker from './components/teamPicker';
+import MatchMaker from './components/matchMaker/index';
+import TeamPicker from './components/teamPicker/index';
 
 class App extends React.Component {
 
@@ -14,6 +13,7 @@ class App extends React.Component {
     this.state = {
       firstPick: false,
       secondPick: false,
+      showTeamPicker: false
     }
   }
 
@@ -21,8 +21,8 @@ class App extends React.Component {
     this.updateColours()
   }
 
-  setTeams = (teams) => {
-    this.setState({ teams })
+  toggleTeamPicker = () => {
+    this.setState({ showTeamPicker: this.state.showTeamPicker})
   }
 
   moveHearts = () => {
@@ -64,32 +64,15 @@ class App extends React.Component {
     this.moveHearts()
   }
 
-  renderTeam = () => {
-    return(
-      
-    )
-  }
-
-  renderTeams = () => {
-    return(
-      this.state.teams.map((team) => {
-        return (
-          this.renderTeam();
-        )
-      })
-    )
-  }
-
   render() {
-    const { firstPick, secondPick, matching, firstColour, secondColour, teams } = this.state;
+    const { firstPick, secondPick, matching, firstColour, secondColour, teams, numberOfTeams } = this.state;
     return (
       <div className="App">
         { teams ?
           this.renderTeams()
           :
           <React.Fragment>
-            <Hearts />
-            <Picker
+            <MatchMaker
               firstPick={firstPick}
               secondPick={secondPick}
               matching={matching}
@@ -97,8 +80,10 @@ class App extends React.Component {
               secondColour={secondColour}
               handleMatch={this.handleMatch}
               clearMatch={this.clearMatch}
+              hasBothPicks={firstPick && secondPick}
             />
-            <div onClick={() => this.setState({ teams: new TeamPicker().pick()})}>Pick teams</div>
+            <div onClick={() => this.toggleTeamPicker()}>Pick teams</div>
+            <TeamPicker />
           </React.Fragment>
         }
       </div>

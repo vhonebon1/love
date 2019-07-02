@@ -5,6 +5,13 @@ html,body{
 body {
   padding: 30px;
 }
+.flex {
+  display: flex;
+  flex-flow: row wrap;
+  &.space-around {
+    justify-content: space-around;
+  }
+}
 .header {
   position: relative;
   top: -38px;
@@ -107,4 +114,35 @@ body {
 .heart:before {
   top: -15px;
   left: 0;
+}
+
+//teampicker
+.teamPicker__button {
+  padding: 1em;
+  border: 1px solid black;
+}
+.teamPicker__button--wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+
+//eliminator
+.eliminator__button {
+  border-radius: 3px;
+  padding: 5px 20px;
+  border: 1px solid #3897f0;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 10px;
+  &.active {
+    color: white;
+    background-color: #3897f0;
+  }
+  &.inactive {
+    background-color: white;
+    color: #3897f0;
+  }
+  &.person {
+    flex: 0 0 15%;
+  }
 }
