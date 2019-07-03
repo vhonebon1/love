@@ -17,7 +17,6 @@ class TeamPicker extends React.Component {
   }
 
   setTeamNumber = (numberOfTeams) => {
-    console.log(numberOfTeams)
     this.setState({ numberOfTeams })
   }
 
@@ -25,7 +24,6 @@ class TeamPicker extends React.Component {
     const { numberOfTeams } = this.state;
     for (var index = 0; index < numberOfTeams; index++) {
       const array = [...this.pickGender('male', numberOfTeams),...this.pickGender('female', numberOfTeams)]
-      console.log(array)
       this.state.teams.push(array)
     }
   }
@@ -77,6 +75,7 @@ class TeamPicker extends React.Component {
                 return (<Button
                   option={option}
                   setTeamNumber={this.setTeamNumber}
+                  active={option == this.state.numberOfTeams}
                 />)
               })
               }

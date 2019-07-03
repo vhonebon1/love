@@ -14,7 +14,7 @@ const Picker = ({ firstPick, secondPick, handleMatch, clearMatch, hasBothPicks, 
       />
     </div>
     { hasBothPicks ?
-      <div className="button" onClick={() => window.location.reload()}>
+      <div className="button" onClick={() => clearMatch()}>
         Play again
       </div>
       : <div className="button" onClick={() => handleMatch()}>

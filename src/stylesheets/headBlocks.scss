@@ -1,5 +1,8 @@
 .headBlock {
   flex: 0 0 40%;
+  h4 {
+    margin: 0;
+  }
 }
 .headBlock__nameImage {
   max-height: 50px;
@@ -15,6 +18,9 @@
   border: 1px solid $blue-header;
   @include flex-column;
   justify-content: space-around;
+  &.noBorder {
+    border: none;
+  }
 }
 .headBlock__image {
   height: 100px;

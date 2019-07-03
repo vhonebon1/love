@@ -21,13 +21,11 @@ class Eliminator extends React.Component {
   }
 
   exclude = (person) => {
-    console.log(this.state.included.filter((element) => element.name !== person.name))
     this.setState({ included: this.state.included.filter((element) => element.name !== person.name) })
   }
 
   include = (person) => {
     this.state.included.push(person)
-    console.log(this.state);
     const button = document.querySelector(`#${person.name}`);
     button.classList.remove('inactive');
     button.classList.add('active');
@@ -40,11 +38,11 @@ class Eliminator extends React.Component {
   renderActionButtons = () => {
     const { everyone } = this.state;
     return(
-      <div className="flex">
-        <div onClick={() => this.toggleEveryone(true)} className={`eliminator__button ${everyone ? 'active' : 'inactive'}`}>
+      <div className="teamPicker__button--wrapper">
+        <div onClick={() => this.toggleEveryone(true)} className={`button ${everyone ? 'active' : 'inactive'}`}>
           Everyone
         </div>
-        <div onClick={() => this.toggleEveryone(false)} className={`eliminator__button ${!everyone ? 'active' : 'inactive'}`}>
+        <div onClick={() => this.toggleEveryone(false)} className={`button ${!everyone ? 'active' : 'inactive'}`}>
           Remove people
         </div>
       </div>
@@ -56,13 +54,13 @@ class Eliminator extends React.Component {
     return(
       <React.Fragment>
         { this.renderActionButtons() }
-        <div className="flex space-around">
+        <div className="teamPicker__button--wrapper">
           { !everyone && People.map((person) => {
             return(
               <div
                 id={person.name}
                 onClick={() => this.toggleInclusion(person)}
-                className={`eliminator__button person ${included.filter((elem) => elem.name == person.name).length > 0 ? 'active' : 'inactive'}`}>
+                className={`button person ${included.filter((elem) => elem.name == person.name).length > 0 ? 'active' : 'inactive'}`}>
                 {formattedName(person.name)}
               </div>)
             })

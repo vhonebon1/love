@@ -5,6 +5,8 @@
 @import './picker';
 @import './weather';
 @import './button';
+@import './teamPicker';
+@import './calendar';
 
 html,body{
   height:100%;
@@ -18,19 +20,25 @@ body {
   margin: 0;
 }
 .main__container {
-  @include flex-row;
+  display: flex;
   flex: 0 0 85%;
   background-color: #EEF3F7;
   padding: 80px 20px 20px 20px;
 }
+.container {
+  width: calc(100% - 40px);
+  @include flex-column;
+  @include bp-medium {
+    @include flex-row;
+  }
+}
 .main__containerInner {
-  display: flex;
+  @include flex-column;
   &.vertical {
-    @include flex-column;
     flex: 0 0 34%;
   }
   &.horizontal {
-    flex: 0 0 64%;
+    flex: 0 0 60%;
   }
 }
 .main__containerItem {
@@ -42,8 +50,9 @@ body {
   border-radius: 5px;
   @include flex-column;
   justify-content: space-around;
-  &.horizontal {
-    flex: 0 0 43%;
+  &.vertical, &.horizontal {
+    flex: 1 1 49%;
+    margin-bottom: 10px;
   }
 }
 .main__containerItem--header {

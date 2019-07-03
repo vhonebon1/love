@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Button = ({ option, setTeamNumber }) =>
-  <div className="button" onClick={() => setTeamNumber(option)}>
+const Button = ({ option, setTeamNumber, active }) =>
+  <div className={`button ${active ? 'active' : 'inactive'}`} onClick={() => setTeamNumber(option)}>
     {option} teams
   </div>
 

@@ -2,6 +2,10 @@
   background-color: white;
   margin-top: 40px;
   @include flex-row;
+  justify-content: space-around;
+  .button {
+    margin-bottom: 0;
+  }
 }
 .picker__actionButton {
   width: 150px;

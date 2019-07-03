@@ -1,0 +1,11 @@
+.teamPicker__button--wrapper {
+  @include flex-row;
+  flex-wrap: wrap;
+  .button {
+    margin: 5px;
+    flex: 0 0 100%;
+    @include bp-medium {
+      flex: 0 0 30%;
+    }
+  }
+}

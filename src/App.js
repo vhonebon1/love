@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import People from './people';
 import Header from './components/header';
+import Calendar from './components/calendar';
 import Picker from './components/matchMaker/index';
 import Weather from './components/weather';
 import MatchMaker from './components/matchMaker/index';
@@ -44,6 +45,10 @@ class App extends React.Component {
     this.setState({ matching: true });
     setTimeout((this.handleFirstPersonPick), 2000);
     setTimeout((this.handleSecondPersonPick), 4000);
+  }
+
+  clearMatch = () => {
+    this.setState({ firstPick: false, secondPick: false })
   }
 
   randomPick = (array) => {
@@ -89,24 +94,27 @@ class App extends React.Component {
       <div className="App">
         <Header />
         <div className="main__container">
-          <div className="main__containerInner vertical">
-            <div className="main__containerItem">
-              <div className="main__containerItem--header">Weather, Crillon-le-brave</div>
-              { hasData && this.renderWeather() }
+          <div className="container">
+            <div className="main__containerInner vertical">
+              <div className="main__containerItem vertical">
+                <div className="main__containerItem--header">Weather, Crillon-le-brave</div>
+                { hasData && this.renderWeather() }
+              </div>
+              <div className="main__containerItem vertical">
+                <div className="main__containerItem--header">Events</div>
+                <Calendar />
+              </div>
             </div>
-            <div className="main__containerItem">
-              <div className="main__containerItem--header">Events</div>
-            </div>
-          </div>
-          <div className="main__containerInner horizontal">
-            <div className="main__containerItem horizontal">
-              <div className="main__containerItem--header">Love match</div>
-              {this.renderPicker()}
-            </div>
-            <div className="main__containerItem horizontal">
-              <div className="main__containerItem--header">Team picker</div>
-              <TeamPicker
-              />
+            <div className="main__containerInner horizontal">
+              <div className="main__containerItem horizontal">
+                <div className="main__containerItem--header">Love match</div>
+                {this.renderPicker()}
+              </div>
+              <div className="main__containerItem horizontal">
+                <div className="main__containerItem--header">Team picker</div>
+                <TeamPicker
+                />
+              </div>
             </div>
           </div>
         </div>
