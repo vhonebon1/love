@@ -94,6 +94,9 @@ class App extends React.Component {
               <div className="main__containerItem--header">Weather, Crillon-le-brave</div>
               { hasData && this.renderWeather() }
             </div>
+            <div className="main__containerItem">
+              <div className="main__containerItem--header">Events</div>
+            </div>
           </div>
           <div className="main__containerInner horizontal">
             <div className="main__containerItem horizontal">

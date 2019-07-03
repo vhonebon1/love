@@ -26,11 +26,11 @@ body {
 .main__containerInner {
   display: flex;
   &.vertical {
+    @include flex-column;
     flex: 0 0 34%;
   }
   &.horizontal {
     flex: 0 0 64%;
-    @include flex-column;
   }
 }
 .main__containerItem {
@@ -40,6 +40,8 @@ body {
   width: 100%;
   border: 1px solid #F0F3F6;
   border-radius: 5px;
+  @include flex-column;
+  justify-content: space-around;
   &.horizontal {
     flex: 0 0 43%;
   }
