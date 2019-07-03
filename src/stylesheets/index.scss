@@ -24,9 +24,11 @@ body {
 }
 .main__container {
   display: flex;
-  flex: 0 0 85%;
   background-color: #EEF3F7;
   padding: 20px;
+  @include bp-medium {
+    flex: 0 0 85%;
+  }
 }
 .container {
   width: 100%;
@@ -37,11 +39,14 @@ body {
 }
 .main__containerInner {
   @include flex-column;
-  &.vertical {
-    flex: 0 0 34%;
-  }
-  &.horizontal {
-    flex: 0 0 60%;
+  flex: 0 0 50%;
+  @include bp-medium {
+    &.vertical {
+      flex: 0 0 34%;
+    }
+    &.horizontal {
+      flex: 0 0 60%;
+    }
   }
 }
 .main__containerItem {

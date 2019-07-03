@@ -1,18 +1,18 @@
 .dashboard__header {
   color: white;
-  @include flex-row;
+  margin-left: 20px;
+  @include flex-column;
   img {
     width: 50px;
   }
+  h4 {
+    margin-top: 0;
+  }
   @include bp-medium {
     margin-top: 30px;
-    @include flex-column;
     img {
       width: 150px;
     }
-  }
-  h4 {
-    margin-top: 0;
   }
 }
 .header {
@@ -28,12 +28,16 @@
 }
 .header__teamPicker {
   background-color: none;
-  padding: 0.8em 1em;
+  padding: 0.5em 0.8em;
   border: 1px solid white;
   color: white;
   max-width: 120px;
+  max-height: 30px;
   margin: 20px auto;
   &:hover {
     cursor: pointer;
+  }
+  @include bp-medium {
+    padding: 0.8em 1em;
   }
 }

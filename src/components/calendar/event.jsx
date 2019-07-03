@@ -24,7 +24,10 @@ class Event extends React.Component {
           <img className="arrow" onClick={() => this.toggle()} src={this.state.open ? UpArrow : DownArrow} alt=""/>
         </div>
         { this.state.open &&
-          <div className="buttonInner">dress code: {dress}, date: {date}</div>
+          <React.Fragment>
+            { dress && <div className="buttonInner">dress code: {dress}</div> }
+            <div className="buttonInner">date: TBC</div>
+          </React.Fragment>
         }
       </div>
     )

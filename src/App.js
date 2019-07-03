@@ -34,12 +34,13 @@ class App extends React.Component {
   }
 
   toggleTeamPicker = () => {
-    console.log('hey')
     this.setState({ showTeamPicker: true })
   }
 
   setWeather = (response) => {
-    this.setState({ temp: Math.floor(response.data.main.temp - 273.15), weatherDesc: response.data.weather[0].main, hasData: true })
+    this.setState({ temp: Math.floor(response.data.main.temp - 273.15),
+                    weatherDesc: response.data.weather[0].main,
+                    hasData: true })
   }
 
   toggleTeamPicker = () => {
@@ -83,36 +84,20 @@ class App extends React.Component {
     )
   }
 
-  renderWeather = () => {
-    const { temp, weatherDesc } = this.state;
-    return(
-      <Weather
-        temp={temp}
-        weatherDesc={weatherDesc}
-      />
-    )
-  }
-
-  renderHeader = () => {
-    return(
-      <Header
-        showTeamPicker={this.state.showTeamPicker}
-        toggleTeamPicker={this.toggleTeamPicker}
-      />
-    )
-  }
-
   renderMain() {
+    const { temp, weatherDesc } = this.state;
     return(
       <React.Fragment>
         <div className="main__containerInner vertical">
           <div className="main__containerItem vertical">
             <div className="main__containerItem--header">Weather, Crillon-le-brave</div>
-            { this.state.hasData && this.renderWeather() }
+            { this.state.hasData && <Weather temp={temp} weatherDesc={weatherDesc} /> }
           </div>
           <div className="main__containerItem vertical">
             <div className="main__containerItem--header">Playlist</div>
-            <img className="spotify__image" src={Spotify} alt="" />
+            <a href="https://open.spotify.com/playlist/0IWGJoTZBW1nPXKD1C5uUH?si=GoYfuiF7QNSXYqAUQKylHg">
+              <img className="spotify__image" src={Spotify} alt="" />
+            </a>
           </div>
         </div>
         <div className="main__containerInner horizontal">
@@ -132,7 +117,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        { this.renderHeader() }
+        <Header toggleTeamPicker={this.toggleTeamPicker} />
         <div className="main__container">
           <div className="container">
             { this.state.showTeamPicker ? <TeamPicker /> : this.renderMain() }

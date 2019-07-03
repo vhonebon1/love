@@ -1,5 +1,11 @@
 .spotify__image {
-  width: 150px;
+  width: 100px;
   margin: auto;
   bottom: 0;
+  &:hover {
+    cursor: pointer;
+  }
+  @include bp-medium {
+    width: 150px;
+  }
 }

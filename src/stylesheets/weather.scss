@@ -1,7 +1,14 @@
 .weather__icon {
   margin: 20px auto 0 auto;
-  max-width: 150px;
+  max-width: 100px;
+  @include bp-medium {
+    max-width: 150px;
+  }
+}
+.weather__desc {
+  margin-bottom: 5px;
 }
 .weather__desc, .weather__temp {
+  color: $grey-font;
   text-align: center;
 }

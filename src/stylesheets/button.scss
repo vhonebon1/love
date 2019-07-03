@@ -16,7 +16,7 @@
     color: white;
   }
   &.picker__button {
-    margin: 0 auto;
+    margin: 20px auto 0 auto;
     @include bp-medium {
       margin: 15px auto;
     }
