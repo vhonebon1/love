@@ -122,8 +122,10 @@ body {
   border: 1px solid black;
 }
 .teamPicker__button--wrapper {
-  display: flex;
-  justify-content: space-around;
+  @include flex-row;
+  .button {
+    flex: 0 0 30%;
+  }
 }
 
 //eliminator

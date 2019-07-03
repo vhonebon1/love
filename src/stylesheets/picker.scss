@@ -2,8 +2,6 @@
   flex: 0 0 80%;
   background-color: white;
   margin-top: 40px;
-}
-.picker__blocksWrapper {
   @include flex-row;
 }
 .picker__actionButton {

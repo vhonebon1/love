@@ -11,9 +11,7 @@ const HeadBlock = ({ person, matching, colour }) =>
         : <img className="headBlock__questionMark" src={QuestionMark} alt="" />
       }
     </div>
-    { person &&
-      <img className="headBlock__nameImage" src={require(`../../images/names/${person.name}.png`)} alt="" />
-    }
+    { person && <h4>{person.name}</h4>}
   </div>
 
 export default HeadBlock;

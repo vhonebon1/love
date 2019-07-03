@@ -1,0 +1,14 @@
+.button {
+  width: 150px;
+  padding: 8px 0;
+  text-align: center;
+  background-color: $grey-container-fill;
+  margin: 15px auto;
+  font-weight: bold;
+  border: 1px solid $grey-container-border;
+  border-radius: 20px;
+  color: $grey-font;
+  &:hover {
+    cursor: pointer;
+  }
+}

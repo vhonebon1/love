@@ -1,11 +1,12 @@
 import React from 'react';
-import Header1 from '../images/header1.png';
-import Header2 from '../images/header2.png';
+import Chart from '../images/chart.svg';
 
 const Header = () =>
-  <div className="header__wrapper">
-    <img className="header__image" alt="" src={Header1} />
-    <img className="header__image" alt="" src={Header2} />
+  <div className="header">
+    <div className="dashboard__header">
+      <img src={Chart} />
+      <h4>Conference</h4>
+    </div>
   </div>
 
 export default Header;

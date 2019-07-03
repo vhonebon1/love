@@ -1,25 +1,23 @@
 import React from 'react';
 import HeadBlock from './headBlock';
 
-const Picker = ({ firstPick, secondPick, handleMatch, clearMatch, hasBothPicks, matching, firstColour, secondColour }) =>
+const Picker = ({ firstPick, secondPick, handleMatch, clearMatch, hasBothPicks, matching }) =>
   <React.Fragment>
     <div className="picker__wrapper">
       <HeadBlock
         person={firstPick}
         matching={matching}
-        colour={firstColour}
       />
       <HeadBlock
         person={secondPick}
         matching={matching}
-        colour={secondColour}
       />
     </div>
     { hasBothPicks ?
-      <div className="picker__actionButton" onClick={() => window.location.reload()}>
+      <div className="button" onClick={() => window.location.reload()}>
         Play again
       </div>
-      : <div className="picker__actionButton" onClick={() => handleMatch()}>
+      : <div className="button" onClick={() => handleMatch()}>
         { matching ? 'Matching ...' : 'Match'}
         </div>
     }
