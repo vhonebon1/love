@@ -29,7 +29,7 @@ class TeamPicker extends React.Component {
   }
 
   allGender = (gender) => {
-    return People.filter((element) => element.gender == gender);
+    return People.filter((element) => element.gender === gender);
   }
 
   inAnotherTeam = (name) => {
@@ -61,7 +61,7 @@ class TeamPicker extends React.Component {
   render() {
     const hasTeams = this.state.teams.length > 0;
     return(
-      <React.Fragment>
+      <div className="teamPicker__wrapper">
         { hasTeams ?
           <React.Fragment>
             {this.state.teams.map((team) => {
@@ -75,7 +75,7 @@ class TeamPicker extends React.Component {
                 return (<Button
                   option={option}
                   setTeamNumber={this.setTeamNumber}
-                  active={option == this.state.numberOfTeams}
+                  active={option === this.state.numberOfTeams}
                 />)
               })
               }
@@ -84,7 +84,7 @@ class TeamPicker extends React.Component {
             <div onClick={() => this.pick()}>Pick teams</div>
           </React.Fragment>
         }
-      </React.Fragment>
+      </div>
     )
   }
 }

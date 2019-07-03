@@ -1,15 +1,16 @@
 import React from 'react';
-import Events from '../events';
+import Events from '../../events';
+import Event from './event';
 
 const Calendar = () =>
   <div className="calendar__wrapper">
     { Events.map((item) => {
       return(
-        <div className="button">
-          <div>{item.name}</div>
-          <div>dress code: {item.dress}, date: TBC</div>
-        </div>
-        )
+        <Event
+          name={item.name}
+          dress={item.dress}
+          date="TBC"
+        />)
       })
     }
   </div>

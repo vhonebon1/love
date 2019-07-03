@@ -13,7 +13,7 @@ class Eliminator extends React.Component {
   }
 
   isIncluded = (person) => {
-    return this.state.included.filter((element) => element.name == person.name).length > 0;
+    return this.state.included.filter((element) => element.name === person.name).length > 0;
   }
 
   toggleInclusion = (person) => {
@@ -60,7 +60,7 @@ class Eliminator extends React.Component {
               <div
                 id={person.name}
                 onClick={() => this.toggleInclusion(person)}
-                className={`button person ${included.filter((elem) => elem.name == person.name).length > 0 ? 'active' : 'inactive'}`}>
+                className={`button person ${included.filter((elem) => elem.name === person.name).length > 0 ? 'active' : 'inactive'}`}>
                 {formattedName(person.name)}
               </div>)
             })

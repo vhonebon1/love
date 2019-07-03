@@ -9,3 +9,6 @@
     }
   }
 }
+.teamPicker__wrapper {
+  @include flex-column;
+}

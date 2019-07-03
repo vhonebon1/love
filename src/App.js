@@ -1,13 +1,13 @@
 import React from 'react';
+import axios from 'axios';
 import './App.css';
 import People from './people';
 import Header from './components/header';
-import Calendar from './components/calendar';
+import Calendar from './components/calendar/index';
 import Picker from './components/matchMaker/index';
 import Weather from './components/weather';
-import MatchMaker from './components/matchMaker/index';
 import TeamPicker from './components/teamPicker/index';
-import axios from 'axios';
+import Spotify from './images/spotify.png';
 
 class App extends React.Component {
 
@@ -31,6 +31,11 @@ class App extends React.Component {
     const key = 'd75d6d8d03bc31b75bc9f8783bc53aa8';
     const endpoint = `http://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lon}&?units=metric&APPID=${key}`
     axios.get(endpoint).then((response) => this.setWeather(response))
+  }
+
+  toggleTeamPicker = () => {
+    console.log('hey')
+    this.setState({ showTeamPicker: true })
   }
 
   setWeather = (response) => {
@@ -88,34 +93,49 @@ class App extends React.Component {
     )
   }
 
+  renderHeader = () => {
+    return(
+      <Header
+        showTeamPicker={this.state.showTeamPicker}
+        toggleTeamPicker={this.toggleTeamPicker}
+      />
+    )
+  }
+
+  renderMain() {
+    return(
+      <React.Fragment>
+        <div className="main__containerInner vertical">
+          <div className="main__containerItem vertical">
+            <div className="main__containerItem--header">Weather, Crillon-le-brave</div>
+            { this.state.hasData && this.renderWeather() }
+          </div>
+          <div className="main__containerItem vertical">
+            <div className="main__containerItem--header">Playlist</div>
+            <img className="spotify__image" src={Spotify} alt="" />
+          </div>
+        </div>
+        <div className="main__containerInner horizontal">
+          <div className="main__containerItem horizontal">
+            <div className="main__containerItem--header">Love match</div>
+            {this.renderPicker()}
+          </div>
+          <div className="main__containerItem horizontal">
+            <div className="main__containerItem--header">Events</div>
+            <Calendar />
+          </div>
+        </div>
+      </React.Fragment>
+    )
+  }
+
   render() {
-    const { firstPick, secondPick, matching, teams, numberOfTeams, temp, weatherDesc, hasData } = this.state;
     return (
       <div className="App">
-        <Header />
+        { this.renderHeader() }
         <div className="main__container">
           <div className="container">
-            <div className="main__containerInner vertical">
-              <div className="main__containerItem vertical">
-                <div className="main__containerItem--header">Weather, Crillon-le-brave</div>
-                { hasData && this.renderWeather() }
-              </div>
-              <div className="main__containerItem vertical">
-                <div className="main__containerItem--header">Events</div>
-                <Calendar />
-              </div>
-            </div>
-            <div className="main__containerInner horizontal">
-              <div className="main__containerItem horizontal">
-                <div className="main__containerItem--header">Love match</div>
-                {this.renderPicker()}
-              </div>
-              <div className="main__containerItem horizontal">
-                <div className="main__containerItem--header">Team picker</div>
-                <TeamPicker
-                />
-              </div>
-            </div>
+            { this.state.showTeamPicker ? <TeamPicker /> : this.renderMain() }
           </div>
         </div>
       </div>

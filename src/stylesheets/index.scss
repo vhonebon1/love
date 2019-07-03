@@ -7,14 +7,17 @@
 @import './button';
 @import './teamPicker';
 @import './calendar';
+@import './spotify';
 
 html,body{
   height:100%;
   font-family: "Karla", sans-serif;
 }
 .App {
-  height: 100vh;
-  display: flex;
+  @include flex-column;
+  @include bp-medium {
+    @include flex-row;
+  }
 }
 body {
   margin: 0;
@@ -23,10 +26,10 @@ body {
   display: flex;
   flex: 0 0 85%;
   background-color: #EEF3F7;
-  padding: 80px 20px 20px 20px;
+  padding: 20px;
 }
 .container {
-  width: calc(100% - 40px);
+  width: 100%;
   @include flex-column;
   @include bp-medium {
     @include flex-row;
@@ -45,7 +48,6 @@ body {
   position: relative;
   background-color: white;
   padding: 20px;
-  width: 100%;
   border: 1px solid #F0F3F6;
   border-radius: 5px;
   @include flex-column;

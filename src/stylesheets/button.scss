@@ -15,4 +15,18 @@
     border: none;
     color: white;
   }
+  &.picker__button {
+    margin: 0 auto;
+    @include bp-medium {
+      margin: 15px auto;
+    }
+  }
+  .buttonInner {
+    width: 80%;
+    margin: 0 auto;
+    @include flex-row;
+  }
+  .arrow {
+    width: 20px;
+  }
 }

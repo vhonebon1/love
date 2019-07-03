@@ -14,10 +14,10 @@ const Picker = ({ firstPick, secondPick, handleMatch, clearMatch, hasBothPicks, 
       />
     </div>
     { hasBothPicks ?
-      <div className="button" onClick={() => clearMatch()}>
+      <div className="button picker__button" onClick={() => clearMatch()}>
         Play again
       </div>
-      : <div className="button" onClick={() => handleMatch()}>
+      : <div className="button picker__button" onClick={() => handleMatch()}>
         { matching ? 'Matching ...' : 'Match'}
         </div>
     }
