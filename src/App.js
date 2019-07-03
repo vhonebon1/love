@@ -5,6 +5,7 @@ import Colours from './colours';
 import Header from './components/header';
 import MatchMaker from './components/matchMaker/index';
 import TeamPicker from './components/teamPicker/index';
+import axios from 'axios';
 
 class App extends React.Component {
 
@@ -13,27 +14,29 @@ class App extends React.Component {
     this.state = {
       firstPick: false,
       secondPick: false,
-      showTeamPicker: false
+      showTeamPicker: false,
+      hasData: false
     }
   }
 
   componentWillMount() {
-    this.updateColours()
+    this.getWeather();
+  }
+
+  getWeather = () => {
+    const lat = 44.1183;
+    const lon = 5.1435;
+    const key = 'd75d6d8d03bc31b75bc9f8783bc53aa8';
+    const endpoint = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&?units=metric&APPID=${key}`
+    axios.get(endpoint).then((response) => this.setWeather(response))
+  }
+
+  setWeather = (response) => {
+    this.setState({ temp: Math.floor(response.data.main.temp - 273.15), weatherDesc: response.data.weather[0].main, hasData: true })
   }
 
   toggleTeamPicker = () => {
     this.setState({ showTeamPicker: this.state.showTeamPicker})
-  }
-
-  moveHearts = () => {
-    const allHearts = document.querySelectorAll('.heart');
-    allHearts.forEach((heart) => {
-      setTimeout(() => this.addMoveClass(heart), Math.random() * (2000 - 0) + 0);
-    });
-  }
-
-  addMoveClass = (element) => {
-    element.classList.add('move');
   }
 
   handleMatch = () => {
@@ -65,27 +68,9 @@ class App extends React.Component {
   }
 
   render() {
-    const { firstPick, secondPick, matching, firstColour, secondColour, teams, numberOfTeams } = this.state;
+    const { firstPick, secondPick, matching, teams, numberOfTeams } = this.state;
     return (
       <div className="App">
-        { teams ?
-          this.renderTeams()
-          :
-          <React.Fragment>
-            <MatchMaker
-              firstPick={firstPick}
-              secondPick={secondPick}
-              matching={matching}
-              firstColour={firstColour}
-              secondColour={secondColour}
-              handleMatch={this.handleMatch}
-              clearMatch={this.clearMatch}
-              hasBothPicks={firstPick && secondPick}
-            />
-            <div onClick={() => this.toggleTeamPicker()}>Pick teams</div>
-            <TeamPicker />
-          </React.Fragment>
-        }
       </div>
     );
   }

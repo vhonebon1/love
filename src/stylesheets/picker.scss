@@ -1,0 +1,19 @@
+.picker__wrapper {
+  flex: 0 0 80%;
+  background-color: white;
+  margin-top: 40px;
+}
+.picker__blocksWrapper {
+  @include flex-row;
+}
+.picker__actionButton {
+  width: 150px;
+  padding: 10px 5px;
+  background-color: white;
+  margin: 15px auto;
+  font-weight: bold;
+  border: 1px solid black;
+  &:hover {
+    cursor: pointer;
+  }
+}
