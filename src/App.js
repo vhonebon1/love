@@ -36,6 +36,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header clearChoice={this.clearChoice} />
+        { !show && <Weather /> }
         <Nav toggleChoice={this.toggleChoice} mini={show} />
         { show &&
           <div className="main__containerItem">

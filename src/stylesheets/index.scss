@@ -51,13 +51,14 @@ body {
   }
 }
 .main__containerItem {
+  flex: calc(100vh - 190px);
   position: relative;
   background-color: white;
   padding: 20px;
   border: 1px solid #F0F3F6;
   border-radius: 5px;
   @include flex-column;
-  justify-content: flex-end;
+  justify-content: center;
   &.vertical, &.horizontal {
     flex: 1 1 49%;
     margin-bottom: 10px;
@@ -71,17 +72,13 @@ body {
   height: 20px;
   background-color: #F4F8F9;
   border-bottom: 1px solid #f3f4f5;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
   padding: 15px 0;
-  @include flex-column;
-}
-.main__containerItem--header {
   margin: auto auto;
   text-align: left;
   color: 	#3d464d;
   font-weight: bold;
   letter-spacing: 0.5px;
-  padding-left: 15px;
+  padding-left: 30px;
   max-width: calc(100% - 15px);
+  @include flex-column;
 }

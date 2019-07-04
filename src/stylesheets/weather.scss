@@ -1,12 +1,16 @@
-.weather__icon {
-  margin: 0 auto;
-  max-width: 100px;
-  @include bp-medium {
-    max-width: 150px;
-  }
+.weather {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 50px;
 }
-.weather__desc {
-  margin-bottom: 5px;
+.weather__wrapper {
+  display: flex;
+  justify-content: center;
+}
+.weather__icon {
+  max-width: 20px;
+  margin-left: 15px;
 }
 .weather__desc, .weather__temp {
   color: $grey-font;
