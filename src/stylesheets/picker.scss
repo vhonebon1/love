@@ -1,6 +1,5 @@
 .picker__wrapper {
   background-color: white;
-  margin-top: 40px;
   @include flex-row;
   justify-content: space-around;
   .button {

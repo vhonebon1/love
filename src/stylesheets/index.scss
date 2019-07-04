@@ -8,6 +8,7 @@
 @import './teamPicker';
 @import './calendar';
 @import './spotify';
+@import './mainNav';
 
 html,body{
   height:100%;
@@ -26,8 +27,8 @@ body {
   display: flex;
   background-color: #EEF3F7;
   padding: 20px;
+  flex: 0 0 85%;
   @include bp-medium {
-    flex: 0 0 85%;
   }
 }
 .container {
@@ -56,7 +57,7 @@ body {
   border: 1px solid #F0F3F6;
   border-radius: 5px;
   @include flex-column;
-  justify-content: space-around;
+  justify-content: flex-end;
   &.vertical, &.horizontal {
     flex: 1 1 49%;
     margin-bottom: 10px;
