@@ -29,3 +29,21 @@
     cursor: pointer;
   }
 }
+.miniNav {
+  display: flex;
+  justify-content: center;
+  height: 50px;
+}
+.miniNav__wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: space-around;
+  padding-top: 5px;
+}
+.miniNav__button {
+  flex: 0 0 10%;
+  img {
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
+  }
+}
