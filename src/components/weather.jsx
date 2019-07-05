@@ -34,14 +34,12 @@ class Weather extends React.Component {
     const { weatherDesc, temp, hasData } = this.state;
     return(
       <React.Fragment>
-        { hasData &&
-          <div className="weather">
-            <div className="weather__wrapper">
-              <div className="weather__temp">Crillon-le-brave temp today: {Math.floor(temp)}°C</div>
-              <img className="weather__icon" src={weatherDesc.includes('cloud') ? Cloudy : Sunny } />
-            </div>
+        <div class="ticker-wrap">
+          <div class="ticker">
+            <div class="ticker__item">{`Crillon-le-brave temp today: ${Math.floor(temp)}°C`}</div>
           </div>
-        }
+        </div>
+
       </React.Fragment>
     )
   }
