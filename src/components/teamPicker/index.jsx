@@ -81,7 +81,7 @@ class TeamPicker extends React.Component {
               }
             </div>
             <Eliminator />
-            <div onClick={() => this.pick()}>Pick teams</div>
+            <div className="button large" onClick={() => this.pick()}>Pick teams</div>
           </React.Fragment>
         }
       </div>

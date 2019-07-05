@@ -1,8 +1,9 @@
 .mainNav {
-  height: calc(100vh - 100px);
+  flex: 0 0 75%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  margin-top: 40px;
 }
 .mainNav__wrapper {
   display: flex;

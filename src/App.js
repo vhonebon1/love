@@ -26,7 +26,7 @@ class App extends React.Component {
         <div className="main__containerInner">
           { show === 'Love match' && <Picker /> }
           { show === 'Team picker' && <TeamPicker /> }
-          { show === 'Playlist' && <a href="https://open.spotify.com/playlist/0IWGJoTZBW1nPXKD1C5uUH?si=GoYfuiF7QNSXYqAUQKylHg"><img className="spotify__image" src={Spotify} alt="" /></a> }
+          { show === 'Playlist' && <a className="spotify__link" href="https://open.spotify.com/playlist/0IWGJoTZBW1nPXKD1C5uUH?si=GoYfuiF7QNSXYqAUQKylHg"><img className="spotify__image" src={Spotify} alt="" /></a> }
           { show === 'Events' && <Calendar /> }
         </div>
       </React.Fragment>

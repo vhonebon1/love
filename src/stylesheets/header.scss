@@ -18,7 +18,7 @@
   }
 }
 .header {
-  height: 100px;
+  flex: 0 0 15%;
   background-color: #136FFF;
   letter-spacing: 0.5px;
   @include flex-row;

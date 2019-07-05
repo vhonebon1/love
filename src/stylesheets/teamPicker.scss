@@ -1,9 +1,10 @@
 .teamPicker__button--wrapper {
   @include flex-row;
   flex-wrap: wrap;
+  margin-bottom: 20px;
   .button {
     margin: 5px;
-    flex: 0 0 100%;
+    flex: 0 0 46%;
     @include bp-medium {
       flex: 0 0 30%;
     }
@@ -11,4 +12,9 @@
 }
 .teamPicker__wrapper {
   @include flex-column;
+}
+.teamPicker__submit {
+  width: 50%;
+  margin: 0 auto;
+  border: 1px solid $grey-font;
 }
