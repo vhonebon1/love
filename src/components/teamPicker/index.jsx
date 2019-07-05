@@ -20,12 +20,40 @@ class TeamPicker extends React.Component {
     this.setState({ numberOfTeams })
   }
 
-  pick = () => {
-    const { numberOfTeams } = this.state;
-    for (var index = 0; index < numberOfTeams; index++) {
-      const array = [...this.pickGender('male', numberOfTeams),...this.pickGender('female', numberOfTeams)]
-      this.state.teams.push(array)
+  shuffle = (a) => {
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
     }
+    return a;
+  }
+
+  teamIndexes = () => {
+    var list = [];
+    for (var i = 0; i <= (this.state.numberOfTeams - 1); i++) {
+      list.push(i);
+    }
+    return list;
+  }
+
+  assignLeftovers = () => {
+    const leftOvers = People.filter(e => !this.state.teams.flat(2).includes(e));
+    if (leftOvers.length > 0) {
+      leftOvers.forEach((person, index) => {
+        this.state.teams[index].push(person);
+      })
+    }
+    console.log(this.state.teams)
+    return this.state.teams;
+  }
+
+  pick = () => {
+    const numberPeople = Math.floor(totalCount / this.state.numberOfTeams)
+    const shuffled = this.shuffle(People);
+    this.teamIndexes().forEach((i) => {
+      this.state.teams.push(shuffled.slice(i*numberPeople, (((i+1)*numberPeople))))
+    });
+    this.assignLeftovers()
   }
 
   allGender = (gender) => {
@@ -34,20 +62,6 @@ class TeamPicker extends React.Component {
 
   inAnotherTeam = (name) => {
     return this.state.teams.flat(2).includes(name);
-  }
-
-  pickGender = (gender) => {
-    const all = this.allGender(gender);
-    const genderCount = (Math.floor(totalCount / this.state.numberOfTeams)) / 2;
-    let picks = [];
-    while (picks.length < genderCount) {
-      const randomIndex = Math.floor(Math.random() * all.length);
-      const name = all[randomIndex].name;
-      if (!this.inAnotherTeam(name) && !picks.includes(name)) {
-        picks.push(name);
-      }
-    }
-    return picks
   }
 
   renderTeamMembers = (team) => {
