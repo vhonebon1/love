@@ -16,12 +16,8 @@
 }
 .headBlock__inner {
   height: 100px;
-  border: 1px solid $blue-header;
   @include flex-column;
   justify-content: space-around;
-  &.noBorder {
-    border: none;
-  }
   @include bp-medium {
     height: 150px;
   }
