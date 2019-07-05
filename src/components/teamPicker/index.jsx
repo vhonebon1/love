@@ -12,7 +12,9 @@ class TeamPicker extends React.Component {
     super(props);
     this.state = {
       numberOfTeams: this.props.numberOfTeams,
-      teams: []
+      teams: [],
+      included: People,
+      everyone: true
     }
   }
 
@@ -37,31 +39,40 @@ class TeamPicker extends React.Component {
   }
 
   assignLeftovers = () => {
-    const leftOvers = People.filter(e => !this.state.teams.flat(2).includes(e));
+    const { included, teams } = this.state;
+    const leftOvers = included.filter(e => !teams.flat(2).includes(e));
     if (leftOvers.length > 0) {
       leftOvers.forEach((person, index) => {
-        this.state.teams[index].push(person);
+        teams[index].push(person);
       })
     }
-    console.log(this.state.teams)
-    return this.state.teams;
+    return teams;
   }
 
   pick = () => {
-    const numberPeople = Math.floor(totalCount / this.state.numberOfTeams)
-    const shuffled = this.shuffle(People);
+    const { included, numberOfTeams, teams } = this.state;
+    const numberPeople = Math.floor(included.length / numberOfTeams)
+    const shuffled = this.shuffle(included);
     this.teamIndexes().forEach((i) => {
-      this.state.teams.push(shuffled.slice(i*numberPeople, (((i+1)*numberPeople))))
+      teams.push(shuffled.slice(i*numberPeople, (((i+1)*numberPeople))))
     });
-    this.assignLeftovers()
+    this.assignLeftovers();
   }
 
-  allGender = (gender) => {
-    return People.filter((element) => element.gender === gender);
+  isIncluded = (person) => {
+    return this.state.included.filter((element) => element.name === person.name).length > 0;
   }
 
-  inAnotherTeam = (name) => {
-    return this.state.teams.flat(2).includes(name);
+  toggleInclusion = (person) => {
+    this.isIncluded(person) && this.exclude(person);
+  }
+
+  exclude = (person) => {
+    this.setState({ included: this.state.included.filter((element) => element.name !== person.name) })
+  }
+
+  toggleEveryone = (everyone) => {
+    this.setState({ everyone })
   }
 
   renderTeamMembers = (team) => {
@@ -94,7 +105,12 @@ class TeamPicker extends React.Component {
               })
               }
             </div>
-            <Eliminator />
+            <Eliminator
+              included={this.state.included}
+              toggleInclusion={this.toggleInclusion}
+              toggleEveryone={this.toggleEveryone}
+              everyone={this.state.everyone}
+            />
             <div className="button large" onClick={() => this.pick()}>Pick teams</div>
           </React.Fragment>
         }
