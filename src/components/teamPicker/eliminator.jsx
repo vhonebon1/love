@@ -16,10 +16,10 @@ const Eliminator = ({ toggleEveryone, toggleInclusion, included, everyone }) =>
       { !everyone && People.map((person) => {
         return(
           <div
-            id={person.name}
+            id={person}
             onClick={() => toggleInclusion(person)}
-            className={`button person ${included.filter((elem) => elem.name === person.name).length > 0 ? 'active' : 'inactive'}`}>
-            {formattedName(person.name)}
+            className={`button person ${included.filter((elem) => elem === person).length > 0 ? 'active' : 'inactive'}`}>
+            {formattedName(person)}
           </div>)
         })
       }

@@ -2,9 +2,11 @@ import React from 'react';
 import People from '../../people';
 import Button from './button';
 import Eliminator from './eliminator';
+import { formattedName } from '../../utils/formattedName';
 
 const totalCount = People.length;
-const teamOptions = [1,2,3,4,5,6]
+const teamOptions = [1,2,3,4,5,6];
+const teamColours = ['#88b04b', '#0080ff', '#c8102e', '#ff8000', '#ffdb00', '#a409ab'];
 
 class TeamPicker extends React.Component {
 
@@ -46,7 +48,7 @@ class TeamPicker extends React.Component {
         teams[index].push(person);
       })
     }
-    return teams;
+    this.setState({ teams: teams })
   }
 
   pick = () => {
@@ -60,25 +62,29 @@ class TeamPicker extends React.Component {
   }
 
   isIncluded = (person) => {
-    return this.state.included.filter((element) => element.name === person.name).length > 0;
+    return this.state.included.filter((element) => element === person).length > 0;
   }
 
   toggleInclusion = (person) => {
-    this.isIncluded(person) && this.exclude(person);
+    this.isIncluded(person) ? this.exclude(person) : this.include(person);
+  }
+
+  include = (person) => {
+    this.state.included.push(person);
   }
 
   exclude = (person) => {
-    this.setState({ included: this.state.included.filter((element) => element.name !== person.name) })
+    this.setState({ included: this.state.included.filter((element) => element !== person) })
   }
 
   toggleEveryone = (everyone) => {
     this.setState({ everyone })
   }
 
-  renderTeamMembers = (team) => {
+  renderTeamMembers = (team, index) => {
     return(
       team.map((person) => {
-        return <div>{person}</div>
+        return <div className="button" style={{backgroundColor: teamColours[index]}}>{formattedName(person)}</div>
       })
     )
   }
@@ -89,8 +95,8 @@ class TeamPicker extends React.Component {
       <div className="teamPicker__wrapper">
         { hasTeams ?
           <React.Fragment>
-            {this.state.teams.map((team) => {
-              return <p>{this.renderTeamMembers(team)}</p>
+            {this.state.teams.map((team, index) => {
+              return <p className="teamPicker__innerWrapper">{this.renderTeamMembers(team, index)}</p>
             })}
           </React.Fragment>
           :

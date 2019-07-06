@@ -7,12 +7,12 @@ const HeadBlock = ({ person, matching }) =>
   <div className="headBlock">
     <div className="headBlock__inner">
       { person ?
-        <img className="headBlock__image" src={require(`../../images/faces/${person.name}.png`)}  alt="" />
+        <img className="headBlock__image" src={require(`../../images/faces/${person}.png`)}  alt="" />
         : matching ? <Spinner />
       : <img className="headBlock__heart" src={Heart} alt="" />
       }
     </div>
-    { person && <p>{formattedName(person.name)}</p>}
+    { person && <p>{formattedName(person)}</p>}
   </div>
 
 export default HeadBlock;
