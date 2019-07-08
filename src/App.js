@@ -11,12 +11,20 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { show: false }
+    this.state = { show: false, daysUntil: this.daysUntilStart() }
   }
 
   toggleChoice = show => this.setState({ show });
 
   clearChoice = () => this.setState({ show: false });
+
+  daysUntilStart = () => {
+    const today = new Date();
+    const dt1 = new Date(`${today.getMonth() + 1}/${(today.getDate())}/${today.getFullYear()}`)
+    const dt2 = new Date("08/16/2019");
+    const diffTime = Math.abs(dt2.getTime() - dt1.getTime());
+    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  }
 
   renderChosenComponent = () => {
     const { show } = this.state;
@@ -34,10 +42,10 @@ class App extends React.Component {
   }
 
   render() {
-    const { show } = this.state;
+    const { show, daysUntil } = this.state;
     return (
       <div className="App">
-        <Header clearChoice={this.clearChoice} />
+        <Header clearChoice={this.clearChoice} daysUntil={daysUntil}/>
         { !show && <Weather /> }
         <Nav toggleChoice={this.toggleChoice} mini={show} />
         { show &&

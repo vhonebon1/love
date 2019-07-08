@@ -1,6 +1,7 @@
 .dashboard__header {
+  width: calc(100% - 40px);
   color: white;
-  margin-left: 20px;
+  margin: 0 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -16,6 +17,10 @@
       width: 150px;
     }
   }
+}
+.dashboard__headerInner {
+  display: flex;
+  justify-content: space-between;
 }
 .header {
   flex: 0 0 15%;
@@ -41,5 +46,19 @@
   }
   @include bp-medium {
     padding: 0.8em 1em;
+  }
+}
+.countdown {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  div {
+    margin: 0 0 10px 0;
+  }
+}
+.countdown__inner {
+  text-align: center;
+  div, h1 {
+    margin: 0 0 3px 0;
   }
 }
