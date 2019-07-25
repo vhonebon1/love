@@ -22,7 +22,7 @@ class App extends React.Component {
   daysUntilStart = () => {
     const today = new Date();
     const dt1 = new Date(`${today.getMonth() + 1}/${(today.getDate())}/${today.getFullYear()}`)
-    const dt2 = new Date("08/16/2019");
+    const dt2 = new Date("08/17/2019");
     const diffTime = Math.abs(dt2.getTime() - dt1.getTime());
     return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   }
