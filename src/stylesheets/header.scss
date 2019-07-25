@@ -9,7 +9,12 @@
     width: 50px;
   }
   h4 {
-    margin: 0 0 10px 0;
+    font-size: 15px;
+    margin: auto 0;
+    p {
+      font-size: 38px;
+      margin: 0;
+    }
   }
   @include bp-medium {
     margin: 30px auto 0 auto;
@@ -58,7 +63,14 @@
 }
 .countdown__inner {
   text-align: center;
+  padding: 10px;
+  border: 1px solid white;
+  border-radius: 10px;
   div, h1 {
-    margin: 0 0 3px 0;
+    font-size: 12px;
+    margin: 0;
+  }
+  h1 {
+    font-size: 15px;
   }
 }

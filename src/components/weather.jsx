@@ -26,7 +26,6 @@ class Weather extends React.Component {
   }
 
   setWeather = (response) => {
-    console.log(response.data.list[0])
     const min = response.data.list[0].temp.min;
     const max = response.data.list[0].temp.max
     this.setState({ temp: Math.floor(max - 273.15),
