@@ -6,6 +6,7 @@ import Picker from './components/matchMaker/index';
 import Weather from './components/weather';
 import TeamPicker from './components/teamPicker/index';
 import Spotify from './images/spotify.png';
+import Background from './images/background.png';
 
 class App extends React.Component {
 

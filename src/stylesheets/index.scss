@@ -20,9 +20,13 @@ html,body{
   height: 100%;
   display: flex;
   flex-direction: column;
+  background-image: url('../images/background.png')
 }
 body {
   margin: 0;
+}
+#root {
+  height: 100%;
 }
 .main__container {
   display: flex;
@@ -52,12 +56,15 @@ body {
   }
 }
 .main__containerItem {
+  position: relative;
   display: flex;
   flex-direction: column;
+  height: 70%;
   background-color: white;
   border: 1px solid #F0F3F6;
   border-bottom: none;
   border-radius: 5px;
+  margin: 0 10px;
   @include flex-column;
   justify-content: center;
   &.vertical, &.horizontal {
@@ -70,16 +77,14 @@ body {
 }
 .main__containerItem--header {
   width: 100%;
+  position: absolute;
+  top: 0;
   height: 20px;
   background-color: #F4F8F9;
   border-bottom: 1px solid #f3f4f5;
   padding: 15px 0;
-  margin: auto auto;
-  text-align: left;
+  text-align: center;
   color: 	#3d464d;
   font-weight: bold;
   letter-spacing: 0.5px;
-  padding-left: 30px;
-  max-width: calc(100% - 15px);
-  @include flex-column;
 }
