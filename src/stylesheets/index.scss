@@ -44,10 +44,12 @@ body {
   }
 }
 .main__containerInner {
-  flex: 0 0 50%;
+  flex: 0 0 75%;
   padding: 20px;
   overflow: scroll;
-  @include flex-column;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   @include bp-medium {
     &.vertical {
       flex: 0 0 34%;
@@ -76,9 +78,7 @@ body {
 }
 .main__containerItem--header {
   width: 100%;
-  position: absolute;
-  top: 0;
-  height: 20px;
+  flex: 0 0 5%;
   background-color: #F4F8F9;
   border-bottom: 1px solid #f3f4f5;
   padding: 15px 0;
