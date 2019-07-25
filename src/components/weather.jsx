@@ -20,13 +20,17 @@ class Weather extends React.Component {
 
   getWeather = () => {
     const key = 'd75d6d8d03bc31b75bc9f8783bc53aa8';
-    const endpoint = `https://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lon}&?units=metric&APPID=${key}`
+    const endpoint = `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${this.state.lat}&lon=${this.state.lon}&cnt=1&?units=metric&APPID=${key}`
+    // const endpoint = `https://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lon}&?units=metric&APPID=${key}`
     axios.get(endpoint).then((response) => this.setWeather(response))
   }
 
   setWeather = (response) => {
-    this.setState({ temp: Math.floor(response.data.main.temp - 273.15),
-                    weatherDesc: response.data.weather[0].main,
+    console.log(response.data.list[0])
+    const min = response.data.list[0].temp.min;
+    const max = response.data.list[0].temp.max
+    this.setState({ temp: Math.floor(max - 273.15),
+                    weatherDesc: response.data.list[0].weather[0].main,
                     hasData: true })
   }
 
@@ -36,7 +40,7 @@ class Weather extends React.Component {
       <React.Fragment>
         <div class="ticker-wrap">
           <div class="ticker">
-            <div class="ticker__item">{`Crillon-le-brave temp today: ${Math.floor(temp)}°C`}</div>
+            <div class="ticker__item">{`Crillon-le-brave max temp today: ${Math.floor(temp)}°C (${weatherDesc})`}</div>
           </div>
         </div>
 
