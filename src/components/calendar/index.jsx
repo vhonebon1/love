@@ -9,7 +9,7 @@ const Calendar = () =>
         <Event
           name={item.name}
           dress={item.dress}
-          date="TBC"
+          date={item.date}
         />)
       })
     }
